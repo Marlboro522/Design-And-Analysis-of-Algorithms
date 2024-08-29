@@ -1,4 +1,5 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,12pt]{article}
+\usepackage{setspace}
 
 \usepackage{amssymb}
 
@@ -11,26 +12,159 @@
     
     \pagenumbering{arabic}
     
-    \section{Problem 1}
+    \section{\underline{\underline{Problem1}}}
     Determine whether all entries of array \emph{A} are distinct, that is, return \emph{True}
      if there are no duplicate entries in \emph{A}, and \emph{False} otherwise.
      \subsection{pseudocode}
+     \begin{tabbing}
+     seen = \{\} \# seen is a set, so no duplicate values.\\
+     for i in \emph{0} to \emph{len(A)-1}:\\
+     \hspace{1em}do:\\
+     \hspace{2em}if a[i] in seen:\\
+     \hspace{3em}return \emph{\textit{False}}\\
+     \hspace{2em}else:\\
+     \hspace{3em}seen.append(a[i])\\
+     return \emph{\textit{True}}
+     \end{tabbing}
+     
      \subsection{Demonstration of Operation}
-    \section{Problem 2}
+     \underline{Example1:}
+     \\Example array \emph{A} = [1,2,2,3,4]
+     \paragraph{}
+     The For loop starts at index 0 and does two things, checks if the value is already in the set \emph{seen} and, if not, it adds the value at the current index to set \emph{seen}.
+     As the loop progresses, the append operation is executed for the elements at indices 0,1 to the set \emph{seen}, which does not allow duplicates. 
+     After reaching the index 2 of the Array \emph{A}, since the value at A[3], exists in the set
+     \emph{seen}, the function returns \emph{False} and the loop is terminated.\\
+     \underline{Example2:}\\
+     Example array \emph{A} = [1,2,3,4,5]
+     \paragraph{}
+        The For loop starts at index 0 and appends the elements at indices 0,1,2,3,4 to the set \emph{seen}, which does not allow duplicates.
+        The index is exhausted, which means the Array is traversed once and there are no duplicates found. So, True is returned.
+     
+        \section{\underline{\underline{Problem2}}}
     Compute $\lfloor\sqrt{n}\rfloor$ for any positive integer $n$.
     Besides assignment and comparison, your algorithm may use only the four basic
     arithmetical operations $(+,-,*,/)$.
     \subsection{pseudocode}
+    \begin{tabbing}
+        we can use a binary search for this.\\
+    high = n\\
+    low = 1\\
+    while low $<$ high:\\
+    \hspace{1em}mid = (low + high) / 2\\
+    \hspace{1em}if mid * mid $=$ n:\\
+    \hspace{2em}return mid\\
+    \hspace{1em}else if mid * mid $<$ n:\\
+    \hspace{2em}low = mid + 1\\
+    \hspace{1em}else:\\
+    \hspace{2em}high = mid - 1\\
+    return high
+    \end{tabbing}
+
     \subsection{Demonstration of Operation}
-    \section{Problem 3}
+    \underline{Example1:}\\
+    For n = 9,\\
+    \textit{First Iteration:}\\
+    low = 1\\
+    high = 9\\
+    mid = 5\\
+    $5^2$ is 25, which is greater than 9. So, high is updated to 4.\\
+    \textit{Second Iteration:}\\
+    low = 1\\
+    high = 4\\
+    mid = 2\\
+    $2^2$ is 4, which is less than 9. So, low is updated to 3.\\
+    \textit{Third Iteration:}\\
+    low = 3\\
+    high = 4\\
+    mid = 3\\
+    Since $3^2$ is 9, it is returned.\\
+    \underline{Example2:}\\
+    For n=4\\
+    \textit{First Iteration:}\\
+    low =1\\
+    high =4\\
+    mid = 2\\
+    $2^2$ is 4, which is equal to n. So, 2 is returned.
+
+
+    \section{\underline{\underline{Problem3}}}
     Compute the product $mn$ for any positive integers $m$ and $n$, using
     only addition $(+)$.
     \subsection{pseudocode}
+    \begin{tabbing}
+        function product(n, m):\\
+    \hspace{1em}result = 0\\
+    \hspace{1em}for i in range(0, m):\\
+    \hspace{2em}result += n\\
+    \hspace{1em}return result
+    \end{tabbing}
     \subsection{Demonstration of Operation}
-    \section{Problem 4}
+    \underline{Example1:}\\
+    For m = 3, n = 4,\\
+    \textit{First Iteration:}\\
+    result = 0\\
+    i = 0\\
+    result = 0 + 4 = 4\\
+    \textit{Second Iteration:}\\
+    result = 4\\
+    i = 1\\
+    result = 4 + 4 = 8\\
+    \textit{Third Iteration:}\\
+    result = 8\\
+    i = 2\\
+    result = 8 + 4 = 12\\
+    12 is returned.\\
+    \underline{Example2:}\\
+    For m = 2, n = 5,\\
+    \textit{First Iteration:}\\
+    result = 0\\
+    i = 0\\
+    result = 0 + 5 = 5\\
+    \textit{Second Iteration:}\\
+    result = 5\\
+    i = 1\\
+    result = 5 + 5 = 10\\
+    10 is returned.
+
+
+    \section{\underline{\underline{Problem4}}}
     Compute the quantity $m^n$ for any positive integers $m$ and $n$, using
     only addition $(+)$ or your algorithm from Question 3.
     \subsection{pseudocode}
-    \subsection{Demonstration of Operation} 
-
+    \begin{tabbing}
+        function power(m, n):\\
+    \hspace{1em}result = 1\\
+    \hspace{1em}for i in range(0, n):\\
+    \hspace{2em}result = product(result, m)\\
+    \hspace{1em}return result
+    \end{tabbing}
+    \subsection{Demonstration of Operation}
+    \underline{Example1:}\\
+    For m = 2, n = 3,\\
+    \textit{First Iteration:}\\
+    result = 1\\
+    i = 0\\
+    result = product(1, 2) = 2\\
+    \textit{Second Iteration:}\\
+    result = 2\\
+    i = 1\\
+    result = product(2, 2) = 4\\
+    \textit{Third Iteration:}\\
+    result = 4\\
+    i = 2\\
+    result = product(4, 2) = 8\\
+    8 is returned.\\
+    \underline{Example2:}\\
+    For m = 3, n = 2,\\
+    \textit{First Iteration:}\\
+    result = 1\\
+    i = 0\\
+    result = product(1, 3) = 3\\
+    \textit{Second Iteration:}\\
+    result = 3\\
+    i = 1\\
+    result = product(3, 3) = 9\\
+    9 is returned.
 \end{document}
+
