@@ -21,7 +21,6 @@ def floor_sqrt(n):
             print("high :",high)
         print("\n")
     return high
-
-# Example usage:
-n = 4
+ #Works but need to automate the finding of initial values somehow. 
+n = 100
 print(floor_sqrt(n))  # Output: 3
