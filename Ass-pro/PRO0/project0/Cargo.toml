@@ -1,0 +1,8 @@
+[package]
+name = "project0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pgfplots = "0.5.1"
+plotly = { version = "0.9.1", features = ["kaleido"] }
