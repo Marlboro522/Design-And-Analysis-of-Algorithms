@@ -1,5 +1,4 @@
-use plotly::{Layout, Scatter};
-use plotly::{ImageFormat, Plot};
+use plotly::{Layout, Scatter, ImageFormat, Plot};
 
 fn main(){
     let mut plot = Plot::new();
