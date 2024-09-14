@@ -1,1 +1,0 @@
-{"rustc":5714790386301551351,"features":"","declared_features":"","target":0,"profile":0,"path":0,"deps":[[1167146431188007565,"build_script_build",false,4388436061113651806]],"local":[{"RerunIfChanged":{"output":"debug/build/plotly_kaleido-63c72084d11f28d1/output","paths":["src/lib.rs"]}}],"rustflags":[],"metadata":0,"config":0,"compile_kind":0}

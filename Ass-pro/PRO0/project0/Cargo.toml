@@ -6,3 +6,5 @@ edition = "2021"
 [dependencies]
 pgfplots = "0.5.1"
 plotly = { version = "0.9.1", features = ["kaleido"] }
+num-bigint = "0.4"  
+num-traits = "0.2"  

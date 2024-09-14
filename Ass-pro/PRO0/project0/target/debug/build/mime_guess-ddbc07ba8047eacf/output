@@ -1,1 +1,0 @@
-cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/Users/ilu/Design-And-Analysis-of-Algorithms/Ass-pro/PRO0/project0/target/debug/build/mime_guess-ddbc07ba8047eacf/out/mime_types_generated.rs
