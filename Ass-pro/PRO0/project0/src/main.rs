@@ -2,13 +2,16 @@
 
 use plotly::common::{Mode,Title};
 use plotly::layout::Layout;
-use plotly::{Scatter,Plot};
+use plotly::{Scatter,Plot,ImageFormat};
 use std::ops::RangeInclusive;
 use std::i128;
 use num_bigint::BigInt;
 use num_traits::{ToPrimitive, One};
 
 // TODO: Need to add more information in the title of the function for easier examination.
+// TODO: Need to see why division functions are not working as expected. Resolved.
+// TODO: After submission make this more beautiful and modular. Use enums to define functions and traits to genneralize logic on this. 
+
 
 
 // defining the two functions
@@ -18,7 +21,7 @@ fn f(x:i128) -> i128{
     (0.5 * x as f32 * (x as f32 - 1.0) + 10.0) as i128
 }
 
-//it panick, I believe due to this, can i32 store a value or a square of 10000000 ??? 
+//it panick, I believe due to this, can i32 store a value or a square of 1000000 ??? 
 //Need more info on this. 
 
 fn g(x:i128) -> i128{
@@ -70,18 +73,20 @@ fn plot_deliverable_1(range: RangeInclusive<i128>,filename: &str, title: &str, s
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
-
+    // plot.show();
+    // plot.show();
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    
 }
 
 fn plot_deliverable_2(range: RangeInclusive<i128>, filename: &str, title: &str, step: usize){
     let x_vals: Vec<i128> = range.step_by(step).collect();
-    let f_vals: Vec<i128> = x_vals
+    let f_vals: Vec<f64> = x_vals
         .iter()
         .filter_map(|&n| {
             let g_val = g(n);
             if g_val != 0 {
-                Some(f(n) / g_val)
+                Some(f(n) as f64 / g_val as f64)
             } else {
                 None
             }
@@ -105,7 +110,8 @@ fn plot_deliverable_2(range: RangeInclusive<i128>, filename: &str, title: &str, 
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 
 fn plot_deliverable_3(range: RangeInclusive<i128>,filename: &str, title: &str, step:usize){
@@ -123,17 +129,19 @@ fn plot_deliverable_3(range: RangeInclusive<i128>,filename: &str, title: &str, s
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    println!("If this this printed... yo know what  = to do, {}", filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 
 fn plot_deliverable_3_part2(range: RangeInclusive<i128>,filename: &str, title: &str, step:usize){
     let x_vals: Vec<i128> = range.step_by(step).collect();
-    let f_vals: Vec<i128> = x_vals
+    let f_vals: Vec<f64> = x_vals
         .iter()
         .filter_map(|&n| {
             let g_val = g_deli3(n);
             if g_val != 0 {
-                Some(f_deli3(n) / g_val)
+                Some(f_deli3(n) as f64 / g_val as f64)
             } else {
                 None
             }
@@ -154,7 +162,8 @@ fn plot_deliverable_3_part2(range: RangeInclusive<i128>,filename: &str, title: &
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 
 fn plot_deliverable_4_part1(range: RangeInclusive<i128>,filename: &str, title: &str, step:usize){
@@ -172,17 +181,18 @@ fn plot_deliverable_4_part1(range: RangeInclusive<i128>,filename: &str, title: &
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 
 fn plot_deliverable_4_part2(range: RangeInclusive<i128>,filename: &str, title: &str, step:usize){
     let x_vals: Vec<i128> = range.step_by(step).collect();
-    let f_vals: Vec<i128> = x_vals
+    let f_vals: Vec<f64> = x_vals
         .iter()
         .filter_map(|&n| {
             let g_val = g_deli4(n);
             if g_val != 0 {
-                Some(f_deli4(n) / g_val)
+                Some(f_deli4(n) as f64 / g_val as f64)
             } else {
                 None
             }
@@ -203,7 +213,8 @@ fn plot_deliverable_4_part2(range: RangeInclusive<i128>,filename: &str, title: &
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    // plot.show();
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
 }
 
 fn plot_deliverable_5_part1(range: RangeInclusive<i128>,filename: &str, title: &str, step:usize){
@@ -221,17 +232,18 @@ fn plot_deliverable_5_part1(range: RangeInclusive<i128>,filename: &str, title: &
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 
 fn plot_deliverable_5_part2(range: RangeInclusive<i128>,filename: &str,title: &str,step: usize){
     let x_vals: Vec<i128> = range.step_by(step).collect();
-    let f_vals: Vec<i128> = x_vals
+    let f_vals: Vec<f64> = x_vals
         .iter()
         .filter_map(|&n| {
             let g_val = g_deli5(n);
             if g_val != 0 {
-                Some(f_deli5(n) / g_val)
+                Some(f_deli5(n) as f64 / g_val as f64)
             } else {
                 None
             }
@@ -252,39 +264,40 @@ fn plot_deliverable_5_part2(range: RangeInclusive<i128>,filename: &str,title: &s
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    plot.write_html(filename);
+    plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
+    // plot.show();
 }
 fn main(){
     //Deliverable 1 PART 1
-    plot_deliverable_1(1..=10, "Deliverable 1: plot_1_to_10.html", "Deliverable 1: Functions f(n) and g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_1(1..=1000000, "Deliverable 1: plot_1_to_1000000.html", "Deliverable 1: Functions f(n) and g(n) for n ranging from 1 to 10^6",1000);
+    plot_deliverable_1(1..=10, "Deliverable 1: plot_1_to_10", "Deliverable 1: Functions f(n) and g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_1(1..=1000000, "Deliverable 1: plot_1_to_1000000", "Deliverable 1: Functions f(n) and g(n) for n ranging from 1 to 10^6",10000);
 
 
     // Deliverable 2
-    plot_deliverable_2(1..=10, "Deliverable 2: plot_1_to_10.html", "Deliverable 2: Function f(n) / g(n) for n ranging from 1 to 10", 1);
-    plot_deliverable_2(1..=100000000, "Deliverable 2: plot_1_to_1000000.html", "Deliverable 2: Function f(n) / g(n) for n ranging from 1 to 10^8", 10_000);
+    plot_deliverable_2(1..=10, "Deliverable 2: plot_1_to_10", "Deliverable 2: Function f(n) / g(n) for n ranging from 1 to 10", 1);
+    plot_deliverable_2(1..=1000000, "Deliverable 2: plot_1_to_1000000", "Deliverable 2: Function f(n) / g(n) for n ranging from 1 to 10^6", 10000);
 
     //Deliverable 3: part 1
-    plot_deliverable_3(1..=10, "Deliverable 3: plot_1_to_10.html", "Deliverable 3: Functions f(n) and g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_3(1..=100000000, "Deliverable 3: plot_1_to_1000000.html", "Deliverable 3: Functions f(n) and g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_3(1..=10, "Deliverable 3: plot_1_to_10", "Deliverable 3: Functions f(n) and g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_3(1..=1000000, "Deliverable 3: plot_1_to_1000000", "Deliverable 3: Functions f(n) and g(n) for n ranging from 1 to 10^6",10000);
 
     //Deliverable 3: part 2
-    plot_deliverable_3_part2(1..=10, "Deliverable 31: plot_1_to_10.html", "Deliverable 3: Function f(n) / g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_3_part2(1..=100000000, "Deliverable 31: plot_1_to_1000000.html", "Deliverable 3: Function f(n) / g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_3_part2(1..=10, "Deliverable 31: plot_1_to_10", "Deliverable 3: Function f(n) / g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_3_part2(1..=1000000, "Deliverable 31: plot_1_to_1000000", "Deliverable 3: Function f(n) / g(n) for n ranging from 1 to 10^6",10000);
 
     //Deliverable 4: part 1
-    plot_deliverable_4_part1(1..=10, "Deliverable 4: plot_1_to_10.html", "Deliverable 4: Functions f(n) and g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_4_part1(1..=100000000, "Deliverable 4: plot_1_to_1000000.html", "Deliverable 4: Functions f(n) and g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_4_part1(1..=10, "Deliverable 4: plot_1_to_10", "Deliverable 4: Functions f(n) and g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_4_part1(1..=1000000, "Deliverable 4: plot_1_to_1000000", "Deliverable 4: Functions f(n) and g(n) for n ranging from 1 to 10^6",10000);
 
     //Deliverable 4: part 2
-    plot_deliverable_4_part2(1..=10, "Deliverable 41: plot_1_to_10.html", "Deliverable 4: Function f(n) / g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_4_part2(1..=100000000, "Deliverable 41: plot_1_to_1000000.html", "Deliverable 4: Function f(n) / g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_4_part2(1..=10, "Deliverable 41: plot_1_to_10", "Deliverable 4: Function f(n) / g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_4_part2(1..=1000000, "Deliverable 41: plot_1_to_1000000", "Deliverable 4: Function f(n) / g(n) for n ranging from 1 to 10^6",10000);
 
     //Deliverable 5: part 1
-    plot_deliverable_5_part1(1..=10, "Deliverable 5: plot_1_to_10.html", "Deliverable 5: Functions f(n) and g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_5_part1(1..=100000000, "Deliverable 5: plot_1_to_1000000.html", "Deliverable 5: Functions f(n) and g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_5_part1(1..=10, "Deliverable 5: plot_1_to_10", "Deliverable 5: Functions f(n) and g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_5_part1(1..=1000000, "Deliverable 5: plot_1_to_1000000", "Deliverable 5: Functions f(n) and g(n) for n ranging from 1 to 10^6",10000);
 
     //Deliverable 5: part2
-    plot_deliverable_5_part2(1..=10, "Deliverable 51: plot_1_to_10.html", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10",1);
-    plot_deliverable_5_part2(1..=100000000, "Deliverable 51: plot_1_to_1000000.html", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10^8",10000);
+    plot_deliverable_5_part2(1..=1000, "Deliverable 51: plot_1_to_1000", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10",1);
+    plot_deliverable_5_part2(1..=1000000, "Deliverable 51: plot_1_to_1000000", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10^6",10000);
 }
