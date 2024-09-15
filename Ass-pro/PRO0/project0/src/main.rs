@@ -129,7 +129,6 @@ fn plot_deliverable_3(range: RangeInclusive<i128>,filename: &str, title: &str, s
 
     let layout = Layout::new().title(Title::with_text(title)).x_axis(plotly::layout::Axis::new().title("n")).y_axis(plotly::layout::Axis::new().title("Function values"));
     plot.set_layout(layout);
-    println!("If this this printed... yo know what  = to do, {}", filename);
     plot.write_image(filename, ImageFormat::PNG, 800, 600, 1.0);
     // plot.show();
 }
@@ -300,4 +299,6 @@ fn main(){
     //Deliverable 5: part2
     plot_deliverable_5_part2(1..=1000, "Deliverable 51: plot_1_to_1000", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10",1);
     plot_deliverable_5_part2(1..=1000000, "Deliverable 51: plot_1_to_1000000", "Deliverable 5: Function f(n) / g(n) for n ranging from 1 to 10^6",10000);
+
+    println!("Done");
 }
