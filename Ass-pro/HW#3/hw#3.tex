@@ -61,13 +61,13 @@ So, the average number of drops needed is \( \frac{n+1}{2} \).
 \textbf{Problem:} Suppose instead that the probability of breaking when the gadget falls from floor \( k \) is proportional to \( \frac{1}{k} \). What is the order of growth (in terms of \( \Theta(\cdot) \) and \( n \)) of the average number of gadget drops in this case?
 
 \textbf{Solution:}
-If the probability of breaking when the gadget falls from floor \( k \) is proportional to \( \frac{1}{k} \):
+if the probablity of breaking on floor \( k \) is proportional to \( \frac{1}{k} \):
 \[
 p_k = \frac{M}{k}
 \]
-where \( M \) is a normalizing constant.
+where \( M \) is just some constant.
 
-For \( p_k \) to be a valid probability distribution:
+For \( p_k \) to be a valid probability distribution, they should al give the summ of 1.
 \[
 \sum_{k=1}^n \frac{M}{k} = 1 \implies M = \frac{1}{H_n}
 \]
