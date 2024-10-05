@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.9)  4 OCT 2024 03:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.9)  5 OCT 2024 17:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -123,19 +123,19 @@ Overfull \hbox (74.99634pt too wide) in paragraph at lines 75--75
 []\OT1/cmtt/m/n/10 character_arrays = create_character_arrays(text, lengths, num_arrays_per_length)[] 
  []
 
-<character_frequencies_in_dataset.png, id=11, 462.528pt x 346.896pt>
+[2]
+<character_frequencies_in_dataset.png, id=15, 462.528pt x 346.896pt>
 File: character_frequencies_in_dataset.png Graphic file (type png)
 <use character_frequencies_in_dataset.png>
 Package pdftex.def Info: character_frequencies_in_dataset.png  used on input line 80.
 (pdftex.def)             Requested size: 312.9803pt x 234.74811pt.
-[2]
 <worst-case_runtimes_(index).png, id=17, 462.528pt x 346.896pt>
 File: worst-case_runtimes_(index).png Graphic file (type png)
 <use worst-case_runtimes_(index).png>
 Package pdftex.def Info: worst-case_runtimes_(index).png  used on input line 88.
 (pdftex.def)             Requested size: 345.0pt x 258.76335pt.
  [3 <./character_frequencies_in_dataset.png>]
-<best-case_runtimes_(index).png, id=22, 462.528pt x 346.896pt>
+<best-case_runtimes_(index).png, id=23, 462.528pt x 346.896pt>
 File: best-case_runtimes_(index).png Graphic file (type png)
 <use best-case_runtimes_(index).png>
 Package pdftex.def Info: best-case_runtimes_(index).png  used on input line 98.
@@ -156,7 +156,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  55i,6n,62p,432b,193s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (6 pages, 218646 bytes).
+Output written on report.pdf (6 pages, 218945 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
