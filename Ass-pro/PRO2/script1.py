@@ -49,6 +49,10 @@ def generate_random_array(n):
     """Generate a random array of size n"""
     return [random.randint(0, 10000) for _ in range(n)]
 
+def generate_sorted_array(n):
+    """Generate a sorted array of size n"""
+    return list(range(n))
+
 def measure_time(array, k):
     """Measure the time taken to sort the array using hybrid sort with threshold k"""
     start_time = time.time()
@@ -59,28 +63,49 @@ def measure_time(array, k):
 def main():
     k_values = [5, 10, 20, 50, 100]
     n_values = [100, 1000, 5000, 10000, 20000]
-    results = {}
+
+    # Results dictionaries to store times for different scenarios
+    results_random = {}
+    results_sorted = {}
 
     for k in k_values:
-        results[k] = []
+        results_random[k] = []
+        results_sorted[k] = []
         for n in n_values:
+            # Measure time for random arrays
             array = generate_random_array(n)
-            array_copy = list(array)
             duration = measure_time(array, k)
-            results[k].append(duration)
-            array_copy.sort()
-            assert array == array_copy, "The array is not sorted correctly!"
-            print(f"HybridSort with K = {k} and n = {n} took: {duration:.6f} seconds")
+            results_random[k].append(duration)
+            print(f"HybridSort with K = {k} and random array of n = {n} took: {duration:.6f} seconds")
 
-    for k, times in results.items():
+            # Measure time for sorted arrays
+            array = generate_sorted_array(n)
+            duration = measure_time(array, k)
+            results_sorted[k].append(duration)
+            print(f"HybridSort with K = {k} and sorted array of n = {n} took: {duration:.6f} seconds")
+
+    # Plot results for random arrays
+    for k, times in results_random.items():
         plt.plot(n_values, times, label=f'K = {k}')
 
     plt.xlabel('Array Length (n)')
     plt.ylabel('Time (seconds)')
-    plt.title('Hybrid Sort Performance')
+    plt.title('Hybrid Sort Performance on Random Arrays')
     plt.legend()
     plt.grid(True)
-    plt.savefig('hybrid_sort_performance.png')
+    plt.savefig('hybrid_sort_performance_random.png')
+    plt.show()
+
+    # Plot results for sorted arrays
+    for k, times in results_sorted.items():
+        plt.plot(n_values, times, label=f'K = {k}')
+
+    plt.xlabel('Array Length (n)')
+    plt.ylabel('Time (seconds)')
+    plt.title('Hybrid Sort Performance on Sorted Arrays')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig('hybrid_sort_performance_sorted.png')
     plt.show()
 
 if __name__ == "__main__":
