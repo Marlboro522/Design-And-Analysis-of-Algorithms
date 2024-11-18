@@ -1,0 +1,42 @@
+bca397d Wasted_Marl (2024-11-18): Project #3
+b9ad59e Wasted_Marl (2024-11-10): Assignment 6.5
+48780ac Wasted_Marl (2024-10-31): just some blahs
+6203a68 Wasted_Marl (2024-10-27): Project2
+61c060a Wasted_Marl (2024-10-24): Project2
+dd30b42 Wasted_Marl (2024-10-22): Project2
+528af5f Wasted_Marl (2024-10-22): Project2
+2cd2fc7 Wasted_Marl (2024-10-18): playground_rust
+8e65dc6 Wasted_Marl (2024-10-18): Nothing
+807f0f9 Wasted_Marl (2024-10-17): Quick and Merge
+5ca113c Wasted_Marl (2024-10-13): Wasste of my worthless time.
+4ff1b75 Wasted_Marl (2024-10-09): Test
+d22a6b7 Wasted_Marl (2024-10-09): Homework5
+9898f13 Wasted_Marl (2024-10-08): Homework4
+7c9a813 Wasted_Marl (2024-10-05): Project1
+230266f Wasted_Marl (2024-10-04): PRO1
+2e1100a Wasted_Marl (2024-10-03): Not really sure where I am
+aeeb14a Wasted_Marl (2024-10-01): Not really sure where I am
+9ac4249 Wasted_Marl (2024-09-22): Homework#1
+0595874 Wasted_Marl (2024-09-17): Dum
+1fc90ae Wasted_Marl (2024-09-15): PROJECT0
+8e283dd Wasted_Marl (2024-09-15): PROJECT0
+206ff1b Wasted_Marl (2024-09-14): PROJECT0
+4502a67 Wasted_Marl (2024-09-14): PROJECT0
+22784c4 Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+cac264f Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+0a89a34 Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+5c94dae Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+d6df701 Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+24c689a Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+32114c5 Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+b9b6277 Wasted_Marl (2024-09-12): pro1-Working and needs optimization
+93db95e Wasted_Marl (2024-09-12): pro1
+6b217ac Wasted_Marl (2024-09-12): pro1
+2d2d105 Wasted_Marl (2024-09-12): HW#1
+4c6fc72 Wasted_Marl (2024-09-09): Project0
+f8f2d38 Wasted_Marl (2024-08-31): Bisection Method
+b6e19c6 Wasted_Marl (2024-08-29): Homework#0
+480595f Wasted_Marl (2024-08-28): Stack's skeleton
+f937d48 Wasted_Marl (2024-08-27): Stack's skeleton
+cb5a2d2 Wasted_Marl (2024-08-26): Initial Commit
+14ccae1 Wasted_Marl (2024-08-26): first commit
