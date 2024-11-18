@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{array}
+\title{Homework\#6.5}
+\author{Raja Kantheti}
+\begin{document}
+\maketitle
+\section{Largest subs sequence}
+\subsection{Psuedocode:}
+\begin{verbatim}
+    Function longestCommonSubsequence(text1, text2):
+    m = length of text1
+    n = length of text2
+
+    # Initialize a 2D array dp with dimensions (m+1) x (n+1) and fill with 0
+    dp = array of size (m+1) x (n+1) filled with 0
+
+    # Iterate over each character in text1
+    for i from 1 to m:
+        # Iterate over each character in text2
+        for j from 1 to n:
+            # If characters match
+            if text1[i-1] == text2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            # If characters do not match
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+    # The value at dp[m][n] contains the length of the LCS
+    return dp[m][n]
+\end{verbatim}
+\subsection{Explanation:}
+\begin{itemize}
+    \item Subproblems: The problem can be divided into smaller subproblems by considering prefixes of the two strings.
+    \item Optimal Substructure: The length of the LCS for the two strings is constructed from the lengths of the LCSs of their substrings.
+    \item State Definition: Let dp[i][j] be the length of the LCS of the first i characters of text1 and the first j characters of text2.
+    \item Recurrence Relation:
+    If the last characters of the current substrings are the same, they contribute to the LCS: dp[i][j] = dp[i-1][j-1] + 1.
+    If the last characters are different, the LCS is the maximum of excluding either character: dp[i][j] = max(dp[i-1][j], dp[i][j-1]).
+\end{itemize}
+\subsection{Problem Instance:}
+Take  text1 = ``ABCBDAB'' and text2 = ``BDCAB'' of length 7 and 5 respectively. 
+The final table wouldd like Table~\ref{table1}
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c}
+   &   & B & D & C & A & B \\ \hline
+   & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+A  & 0 & 0 & 0 & 0 & 1 & 1 \\ \hline
+B  & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+C  & 0 & 1 & 1 & 2 & 2 & 2 \\ \hline
+B  & 0 & 1 & 1 & 2 & 2 & 3 \\ \hline
+D  & 0 & 1 & 2 & 2 & 2 & 3 \\ \hline
+A  & 0 & 1 & 2 & 2 & 3 & 3 \\ \hline
+B  & 0 & 1 & 2 & 2 & 3 & 4 \\ 
+\end{tabular}
+\caption{LCS table for text1 and text2}\label{table1}
+\end{table}
+
+\section{Edit distance}
+\subsection{Psuedocode:}
+\begin{verbatim}
+    Function editDistance(str1, str2):
+    m = length of str1
+    n = length of str2
+    Initialize dp array of size (m+1) x (n+1) filled with 0
+    
+    For i from 0 to m:
+        dp[i][0] = i
+    
+    For j from 0 to n:
+        dp[0][j] = j
+    
+    For i from 1 to m:
+        For j from 1 to n:
+            If str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            Else:
+                dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + 1)
+    
+    Return dp[m][n]
+
+\end{verbatim}
+\subsection{Explanation:}
+\begin{itemize}
+    \item Subproblems: The problem can be broken down into smaller subproblems where we consider the prefixes of the two strings.
+    \item Optimal Substructure: The solution to the problem can be constructed from the solutions to its subproblems. Specifically, the edit distance for two strings is built from the edit distances of their substrings.
+    \item State Definition: Let dp[i][j] be the edit distance between the first i characters of word1 and the first j characters of word2.
+    \item Recurrence Relation:
+    If the last characters of the current substrings are the same, no new operation is needed: dp[i][j] = dp[i-1][j-1].
+    If the last characters are different, consider the cost of each operation (insertion, deletion, substitution) and take the minimum: dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + 1).
+    
+\end{itemize}
+\subsection{Problem Instance: }
+word1: horse \\
+word2: ros \\
+The dp array would be be of dimensions 6 x 4\\
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+0 & 1 & 2 & 3 \\ \hline
+1 & 1 & 2 & 3 \\ \hline
+2 & 2 & 1 & 2 \\ \hline
+3 & 2 & 2 & 2 \\ \hline
+4 & 3 & 3 & 2 \\ \hline
+5 & 4 & 4 & 3 \\ \hline
+\end{tabular}
+\caption{Edit distance table}\label{tab:edit_distance}
+\end{table}
+The minimum operationns we have to perform is 3 as seen in the table.
+\section{Minimum Partition: }
+\subsection{Psuedocode:}
+\begin{verbatim}
+    Function findMin(vec):
+        n = length of vec
+        total_sum = sum(vec)
+        dp = array of size (n+1) x (total_sum+1) filled with False
+
+        for i from 0 to n:
+            dp[i][0] = True
+
+        for j from 1 to total_sum:
+            dp[0][j] = False
+
+        for i from 1 to n:
+            for j from 1 to total_sum:
+                dp[i][j] = dp[i-1][j]
+                if vec[i-1] <= j:
+                    dp[i][j] = dp[i][j] OR dp[i-1][j-vec[i-1]]
+
+        diff = INFINITY
+
+        for j from total_sum // 2 to 0:
+            if dp[n][j]:
+                diff = total_sum - 2 * j
+                break
+
+        return diff
+
+\end{verbatim}
+\subsection{Explanation:}
+\begin{itemize}
+    \item Optimal Substructure: The problem can be broken down into smaller subproblems. The main goal is to find the minimum difference between two subset sums of the array. The problem has optimal substructure because, at each step, we decide whether to include or exclude an element from a subset and we can build the solution incrementally by solving smaller subproblems. These smaller subproblems (whether a subset sum can be achieved or not) are combined to construct the final solution, which is the minimum difference of partition sums.
+\item State Definition:dp[i][j] represents whether it's possible to form a subset with a sum of j using the first i elements from the array.
+The state is defined as a 2D array where:
+The rows (i) represent the number of elements considered (from 0 to n).
+The columns \(j\) represent the possible subset sums (from 0 to \(total\_sum\)).
+
+\item Recurrence Relation: For each element vec[i-1] and each possible sum j:
+If we exclude the current element vec[i-1], the subset sum remains the same as without the element, i.e., dp[i][j] = dp[i-1][j].
+If we include the current element vec[i-1], the subset sum becomes j - vec[i-1], so dp[i][j] = dp[i-1][j-vec[i-1]] if j >= vec[i-1].
+\end{itemize}
+\end{document}
