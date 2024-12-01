@@ -27,3 +27,21 @@ directory = 'graphs'
 results = process_all_graphs(directory)
 for result in results:
     print(f"Graph Type: {result[0]}, File: {result[1]}, Nodes: {result[2]}, Edges: {result[3]}")
+
+import matplotlib.pyplot as plt
+
+def plot_density(results):
+    for graph_type in ['type_1', 'type_2', 'type_3']:
+        type_results = [res for res in results if res[0] == graph_type]
+        nodes = [res[2] for res in type_results]
+        edges = [res[3] for res in type_results]
+        plt.scatter(nodes, edges, label=graph_type)
+    
+    plt.xlabel('Number of Nodes')
+    plt.ylabel('Number of Edges')
+    plt.legend()
+    plt.title('Graph Density Analysis')
+    plt.show()
+
+# Example usage:
+plot_density(results)
