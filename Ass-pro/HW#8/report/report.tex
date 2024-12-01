@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Homework\#8}
+\author{Raja Kantheti}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Sample Graph}
+
+We will use the following graph for our examples:
+\begin{itemize}
+    \item Vertices: \( V = \{A, B, C, D\} \)
+    \item Edges with weights: 
+    \begin{itemize}
+        \item \( (A, B, 1) \)
+        \item \( (A, C, 3) \)
+        \item \( (B, C, 3) \)
+        \item \( (B, D, 6) \)
+        \item \( (C, D, 4) \)
+    \end{itemize}
+\end{itemize}
+
+\section{Prim's Algorithm with Weight Matrix and Unordered Array}
+
+\subsection{Steps}
+
+\begin{enumerate}
+    \item \textbf{Initialization:}
+    \begin{itemize}
+        \item Start with vertex \( A \).
+        \item Priority queue (unordered array): \( [(A, 0)] \)
+        \item MST: \( \emptyset \)
+    \end{itemize}
+    \item \textbf{Main Loop (runs |V| times):}
+    \begin{itemize}
+        \item Extract minimum: \( (A, 0) \)
+        \item Add edges \( (A, B, 1) \) and \( (A, C, 3) \) to the queue.
+        \item Priority queue: \( [(B, 1), (C, 3)] \)
+        \item MST: \( \{A\} \)
+        \item Extract minimum: \( (B, 1) \)
+        \item Add edge \( (B, D, 6) \) to the queue.
+        \item Priority queue: \( [(C, 3), (D, 6)] \)
+        \item MST: \( \{A, B\} \)
+        \item Extract minimum: \( (C, 3) \)
+        \item Add edge \( (C, D, 4) \) to the queue.
+        \item Priority queue: \( [(D, 4)] \)
+        \item MST: \( \{A, B, C\} \)
+        \item Extract minimum: \( (D, 4) \)
+        \item Priority queue: \( \emptyset \)
+        \item MST: \( \{A, B, C, D\} \)
+    \end{itemize}
+\end{enumerate}
+
+\section{Prim's Algorithm with Adjacency List and Min-Heap}
+
+\subsection{Steps}
+
+\begin{enumerate}
+    \item \textbf{Initialization:}
+    \begin{itemize}
+        \item Start with vertex \( A \).
+        \item Priority queue (min-heap): \( [(0, A)] \)
+        \item MST: \( \emptyset \)
+    \end{itemize}
+    \item \textbf{Main Loop (runs |V| times):}
+    \begin{itemize}
+        \item Extract minimum: \( (0, A) \)
+        \item Add edges \( (A, B, 1) \) and \( (A, C, 3) \) to the heap.
+        \item Priority queue: \( [(1, B), (3, C)] \)
+        \item MST: \( \{A\} \)
+        \item Extract minimum: \( (1, B) \)
+        \item Add edge \( (B, D, 6) \) to the heap.
+        \item Priority queue: \( [(3, C), (6, D)] \)
+        \item MST: \( \{A, B\} \)
+        \item Extract minimum: \( (3, C) \)
+        \item Add edge \( (C, D, 4) \) to the heap.
+        \item Priority queue: \( [(4, D), (6, D)] \)
+        \item MST: \( \{A, B, C\} \)
+        \item Extract minimum: \( (4, D) \)
+        \item Priority queue: \( [(6, D)] \)
+        \item MST: \( \{A, B, C, D\} \)
+    \end{itemize}
+\end{enumerate}
+
+\section{Kruskal's Algorithm with Adjacency List and Fast Sort}
+
+\subsection{Steps}
+
+\begin{enumerate}
+    \item \textbf{Initialization:}
+    \begin{itemize}
+        \item Sort edges by weight.
+        \item Edges: \( [(A, B, 1), (A, C, 3), (B, C, 3), (C, D, 4), (B, D, 6)] \)
+        \item MST: \( \emptyset \)
+    \end{itemize}
+    \item \textbf{Main Loop (runs |E| times):}
+    \begin{itemize}
+        \item Edge \( (A, B, 1) \) - add to MST.
+        \item MST: \( \{(A, B, 1)\} \)
+        \item Edge \( (A, C, 3) \) - add to MST.
+        \item MST: \( \{(A, B, 1), (A, C, 3)\} \)
+        \item Edge \( (B, C, 3) \) - cycle detected, skip.
+        \item Edge \( (C, D, 4) \) - add to MST.
+        \item MST: \( \{(A, B, 1), (A, C, 3), (C, D, 4)\} \)
+        \item Edge \( (B, D, 6) \) - cycle detected, skip.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
