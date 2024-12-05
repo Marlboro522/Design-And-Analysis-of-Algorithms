@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
 
 def load_graph(file_path):
     df = pd.read_csv(file_path, header=None)
@@ -28,7 +29,6 @@ results = process_all_graphs(directory)
 for result in results:
     print(f"Graph Type: {result[0]}, File: {result[1]}, Nodes: {result[2]}, Edges: {result[3]}")
 
-import matplotlib.pyplot as plt
 
 def plot_density(results):
     for graph_type in ['type_1', 'type_2', 'type_3']:
