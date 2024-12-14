@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\title{Homework \#9}
+\author{Raja Kantheti}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1: P, NP, and NP-Complete}
+\textbf{Assumptions:}
+\begin{itemize}
+    \item \textbf{Prob1} is in P.
+    \item \textbf{Prob2} is in NP.
+    \item \textbf{Prob3} is NP-Complete.
+\end{itemize}
+
+\subsection*{(a) There exists an algorithm for Prob2 with worst-case polynomial-time complexity.}
+\begin{itemize}
+    \item \textbf{If \(P = NP\):} Yes. If \(P = NP\), all problems in NP can be solved in polynomial time, including Prob2.
+    \item \textbf{If \(P \neq NP\):} Possibly yes, but it depends on the problem. Prob2 is in NP, so it might still be solvable in polynomial time even if \(P \neq NP\).
+\end{itemize}
+
+\subsection*{(b) There exists an algorithm for Prob3 with worst-case polynomial-time complexity.}
+\begin{itemize}
+    \item \textbf{If \(P = NP\):} Yes. Since Prob3 is NP-Complete, if \(P = NP\), then all problems in NP (including NP-Complete problems like Prob3) can be solved in polynomial time.
+    \item \textbf{If \(P \neq NP\):} No. NP-Complete problems cannot be solved in polynomial time under the assumption that \(P \neq NP\).
+\end{itemize}
+
+\subsection*{(c) There exists no polynomial-time reduction from Prob3 to Prob2.}
+\begin{itemize}
+    \item \textbf{If \(P = NP\):} No. If \(P = NP\), any NP problem (including NP-Complete problems like Prob3) can be reduced to another NP problem (such as Prob2) in polynomial time.
+    \item \textbf{If \(P \neq NP\):} No. Regardless of whether \(P = NP\), there always exists a polynomial-time reduction from one NP-Complete problem (like Prob3) to another NP problem.
+\end{itemize}
+
+\subsection*{(d) Prob3 is NP-Hard.}
+\begin{itemize}
+    \item \textbf{If \(P = NP\):} Yes. NP-Complete problems are, by definition, NP-Hard, and this property is independent of whether \(P = NP\).
+    \item \textbf{If \(P \neq NP\):} Yes. The definition of NP-Completeness implies NP-Hardness, which remains true even if \(P \neq NP\).
+\end{itemize}
+
+\section*{Problem 2: Prove that the Decision Version of the Traveling Salesperson Problem (TSP) is NP-Complete}
+
+\section*{Proving that the Decision Version of TSP is NP-Complete}
+
+To prove that the decision version of the Traveling Salesperson Problem (TSP) is NP-Complete, we must follow these steps:
+
+\begin{enumerate}
+    \item Show that TSP is in NP.
+    \item Reduce a known NP-Complete problem to TSP in polynomial time.
+\end{enumerate}
+
+\subsection*{Step 1: TSP is in NP}
+
+The decision version of TSP is defined as follows:
+
+\begin{quote}
+\textbf{Given:} A set of \(n\) cities, a function \(c(i, j)\) representing the distance between city \(i\) and city \(j\) for all pairs \(i, j\), and a threshold \(k\).\\
+\textbf{Question:} Is there a route that visits every city exactly once, returning to the starting city, with a total distance less than or equal to \(k\)?
+\end{quote}
+
+To show that TSP is in NP, we verify that any ``yes'' instance of TSP can be checked in polynomial time. Let the candidate solution be a specific ordering of the cities \(S = \{s_1, s_2, \ldots, s_n, s_1\}\). Verification involves:
+
+\begin{itemize}
+    \item \textbf{Step 1: Validate the structure of the route:}
+    \begin{itemize}
+        \item Ensure that all \(n\) cities are visited exactly once. This involves:
+        \begin{itemize}
+            \item Checking that the sequence \(S\) contains \(n+1\) cities, where the last city equals the first.
+            \item Using a set or frequency counter to verify no duplicates or omissions among the \(n\) cities.
+        \end{itemize}
+        \item This step has a time complexity of \(O(n)\).
+    \end{itemize}
+    \item \textbf{Step 2: Compute the total distance:}
+    \begin{itemize}
+        \item Use the distance function \(c(i, j)\) to compute the total distance:
+        \[
+        \text{Total distance} = \sum_{i=1}^{n} c(s_i, s_{i+1}),
+        \]
+        where \(s_{n+1} = s_1\) to complete the cycle.
+        \item This step requires \(n\) calls to \(c(i, j)\), each taking \(O(1)\) time, resulting in a total complexity of \(O(n)\).
+    \end{itemize}
+    \item \textbf{Step 3: Compare the total distance to the threshold \(k\):}
+    \begin{itemize}
+        \item A simple comparison operation takes \(O(1)\) time.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Overall Complexity:}
+The total verification time is:
+\[
+T_{\text{verify}}(n) = O(n) + O(n) + O(1) = O(n).
+\]
+Since verification is polynomial, TSP belongs to NP.
+
+\subsection*{Step 2: Reduction from HAM-CYCLE to TSP}
+
+The Hamiltonian Cycle Problem (HAM-CYCLE) is a known NP-Complete problem. It asks:
+\begin{quote}
+\textbf{Given:} An undirected, unweighted graph \(G = (V, E)\).\\
+\textbf{Question:} Does there exist a cycle that visits every vertex exactly once?
+\end{quote}
+
+To prove TSP is NP-Complete, we reduce HAM-CYCLE to TSP in polynomial time.
+
+\subsubsection*{Reduction Construction:}
+Given a graph \(G = (V, E)\):
+\begin{enumerate}
+    \item Create a complete graph \(G' = (V, E')\), where:
+    \begin{itemize}
+        \item \(E'\) contains all possible edges between vertices in \(V\).
+        \item For each edge \(e \in E\) in the original graph \(G\), assign a weight of 1.
+        \item For each edge \(e \notin E\), assign a very large weight \(M\), where \(M > |V| \cdot \text{max edge weight in } G\).
+    \end{itemize}
+    \item Set the threshold \(k = |V|\), representing the total distance of the Hamiltonian cycle.
+\end{enumerate}
+
+\subsubsection*{Reduction Correctness:}
+\begin{itemize}
+    \item If \(G\) has a Hamiltonian cycle, this corresponds to a route in \(G'\) where all edges have weight 1. The total distance of this route is exactly \(|V|\), which is less than or equal to the threshold \(k\).
+    \item If \(G\) does not have a Hamiltonian cycle, any route in \(G'\) must use at least one edge with weight \(M\). Since \(M > k\), such a route will exceed the threshold.
+\end{itemize}
+
+\subsubsection*{Reduction Complexity:}
+\begin{itemize}
+    \item Constructing the complete graph \(G'\) requires adding \(O(|V|^2)\) edges.
+    \item Assigning weights to edges is also \(O(|V|^2)\).
+    \item Thus, the reduction runs in \(O(|V|^2)\), which is polynomial.
+\end{itemize}
+
+\subsection*{Conclusion}
+
+\begin{enumerate}
+    \item TSP is in NP because a ``yes'' instance can be verified in \(O(n)\).
+    \item HAM-CYCLE reduces to TSP in \(O(|V|^2)\), which is polynomial.
+\end{enumerate}
+
+By definition, TSP is NP-Complete.
+\end{document}

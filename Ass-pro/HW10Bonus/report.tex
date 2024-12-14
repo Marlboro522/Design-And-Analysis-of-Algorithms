@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Bonus Homework}
+\author{Raja Kantheti}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1(a): Lower Bound for Searching in a Sorted Array}
+Read about this in wikipedia. Noe sure if this is correct. 
+To show that \(\Omega(\log n)\) is a lower bound for the complexity of searching for a key value in a sorted array, we use an information-theoretic argument.
+
+\subsection*{Analysis}
+When searching for a key \(x\) in a sorted array \(A[1 \dots n]\), there are \(n + 1\) possible outcomes:
+\begin{enumerate}
+    \item The key \(x\) matches an element \(A[i]\) for some \(i \in \{1, 2, \dots, n\}\).
+    \item The key \(x\) does not exist in the array.
+\end{enumerate}
+Thus, there are \(f(n) = n + 1\) distinct possible results for the search. To distinguish among these outcomes, any comparison-based algorithm can be modeled as a decision tree. In this tree:
+\begin{itemize}
+    \item Each internal node represents a comparison of the form \(x \leq A[i]\), dividing the search space.
+    \item Each leaf node corresponds to a unique outcome: either the index of the matching element or a failure if \(x \notin A\).
+\end{itemize}
+
+For the decision tree to represent all \(n + 1\) outcomes, it must have at least \(n + 1\) leaves. The height of such a tree, which represents the worst-case number of comparisons, is at least \(\log_2(n + 1)\) because a binary tree of height \(h\) can have at most \(2^h\) leaves. Therefore, the height of the decision tree is \(\Omega(\log n)\), establishing the lower bound.
+
+Binary Search achieves a worst-case runtime of \(\Theta(\log n)\) by halving the search space at each step. Since \(\Omega(\log n)\) is the asymptotic lower bound, Binary Search is provably optimal among comparison-based search algorithms.
+
+\section*{Problem 1(b): Using Information-Theoretic Bounds to Prove \(P \neq NP\)}
+
+While information-theoretic arguments are effective for deriving lower bounds for specific algorithmic problems like searching or sorting, applying this approach to show \(P \neq NP\) encounters fundamental challenges.
+
+\subsection*{Challenges}
+\begin{enumerate}
+    \item \textbf{Exponential Growth of Outcomes:} For NP-Complete problems like SAT, the number of potential solutions \(f(n)\) (e.g., all possible truth assignments for \(n\) variables) grows exponentially, \(|f(n)| = 2^n\). This implies a decision tree height of \(\Omega(n)\), but this result is trivial and does not address whether polynomial-time algorithms exist for such problems.
+    \item \textbf{Nature of the \(P \neq NP\) Question:} The \(P \neq NP\) question concerns whether every problem verifiable in polynomial time can also be solved in polynomial time. Information-theoretic bounds primarily address search problems but do not differentiate between solving and verifying solutions.
+    \item \textbf{Algorithmic Generality:} Decision trees are a specific model suited for comparison-based algorithms. Problems in \(NP\) may require reductions, dynamic programming, or other algorithmic strategies that fall outside the scope of decision trees.
+    \item \textbf{Reduction Complexity:} The question \(P \neq NP\) involves polynomial-time reductions between problems, which is not captured by the static structure of decision trees.
+\end{enumerate}
+
+\subsection*{Conclusion}
+Information-theoretic methods effectively establish lower bounds for certain algorithmic problems, such as sorting or searching. However, these methods do not generalize to the \(P \neq NP\) question because they cannot capture the complexity and breadth of computational models involved in NP-Complete problems. Consequently, proving \(P \neq NP\) requires deeper insights beyond the scope of information-theoretic bounds.
+
+\end{document}
